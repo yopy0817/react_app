@@ -56,7 +56,7 @@ class App3 extends React.Component {
                                 medium_cover_image={result.medium_cover_image}
                                 genres={result.genres} //추가해준다
                                 >
-                                    
+  
                             </Movie>
                         })}
                     </div>

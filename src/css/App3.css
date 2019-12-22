@@ -1,3 +1,92 @@
 body {
-    background-color: darksalmon;
+    margin: 0;
+    padding: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    background-color: #eff3f7;
+    height: 100%;
+
+}
+
+/*정중앙 정렬방법*/
+/*부모요소의 높이값 100% */
+html,
+body,
+#root,
+.container {
+    height: 100%;
+
+    display: flex; /* 컨테이너 flex*/
+    justify-content: center; /*가로가운데정렬*/
+}
+/*자식에서 아래처럼선언*/
+.loading {
+    width: 100%;
+    height: 100%;
+    display: flex; 
+    justify-content: center;/*flex와 함께 justify는 가로중앙정렬*/
+    align-items: center;/*flex와 함께 justify는 세로중앙정렬*/
+}
+
+.movies { 
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    padding: 50px;
+    padding-top: 70px;
+
+    align-items: flex-start;
+    width: 80%;
+    
+}
+
+.movies .movie {
+    width: 40%;
+    background-color: white;
+    margin-bottom: 70px;
+    display: flex; /*부모요소처럼사용 flex로 변경 */
+    align-items: flex-start; /*flex의 스타트지점으로*/
+    justify-content: space-between;
+    padding: 20px;
+
+    position: relative;
+    
+    box-shadow: 0 13px 27px -5px rgba(50,50,93,.25), 0 8px 16px -8px rgba(0,0,0,.3), 0 -6px 16px -6px rgba(0,0,0,.025);
+    border-radius: 8px;
+}
+
+/*이미지 크기 */
+.movie img {
+    max-width: 120px;
+    margin-right: 20px;
+    
+    position: absolute;
+    top: -30px;
+    left: 20px;
+
+    box-shadow: 0 13px 27px -5px rgba(50,50,93,.25), 0 8px 16px -8px rgba(0,0,0,.3), 0 -6px 16px -6px rgba(0,0,0,.025);
+}
+
+.movie h3 {
+    margin: 0;
+    font-weight: 500; 
+    font-size: 20px;
+}
+
+.movie_inner {
+    padding-left: 150px;
+}
+
+.movie_inner .movie_year,
+.movie_inner .movie_genres {
+    opacity: 0.7;
+
+    list-style: none;
+    padding: 0;
+    margin: 0;
+
+    display: flex;
+}
+
+.movie_genres li {
+    margin-left: 10px;
 }
