@@ -90,3 +90,28 @@ body,
 .movie_genres li {
     margin-left: 10px;
 }
+
+
+/*모바일환경*/
+@media (max-width: 767px) {
+
+    html,
+    body,
+    #root,
+    .container {
+        width: 100%;
+        justify-content: normal;
+    }
+    .movies {
+        padding: 70px 0;
+        width: 100%;
+    }
+
+    .movies .movie {
+        width: 100%;
+    }
+
+    .movie_inner .movie_genres {
+        display: none;
+    }
+}
