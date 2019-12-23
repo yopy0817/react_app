@@ -1,72 +1,27 @@
 import React from 'react';
-import Axios from 'axios';
-//import Movie from './App2_Child1'; //자식클래스로 사용할 컴포넌트를 임포트
-import Movie from './App3_Child1';
-import './css/App3.css';
 
-class App3 extends React.Component {
+import {HashRouter, Route} from 'react-router-dom'; 
+//import {BrowserRouter, Route} from 'react-router-dom'; //브라우저 라우터는 #이 사라진다(단 깃에서 배포시 문제가있음)
 
-    state = {
-        isLoad: true,
-        movies: []
-    }
+import Home from './routes/Home';
+import About from './routes/About';
+import Detail from './routes/Detail';
+import Navigation from './component/Navigation';
 
-    getMovies = async () => { // async는 이 함수는 비동기야 await가 끝날떄 까지 기다려줘! 라는 것을 의미한다
-        //npm i axios 설치
-        
-        //script문법
-        //const result = await Axios.get("https://yts-proxy.now.sh/list_movies.json"); //await은 Axios가 끝날떄 까지 기다려줘를 의미함
-        //console.log(result.data.data.movies);
-        
-        //ex6문법
-        //?sort_by=rating은 정렬을 의미함 api문서에서 확인
-        const {data:{data: {movies}}} = await Axios.get("https://yts-proxy.now.sh/list_movies.json?sort_by=rating"); //await은 Axios가 끝날떄 까지 기다려줘를 의미함
-        console.log(movies);
-
-        this.setState(callback => ({movies, isLoad: false}) ); //setState를 이용해서 state의 데이터값 저장, 로딩여부를 false
-    }
-
-    componentDidMount() { //첫번째 랜더가 끝나고 실행되는 리엑트함수
-        // setTimeout(() => {
-        //     this.setState(callback => ({isLoad: false, test: false}) ); //test변수를 state에 마음대로 추가하더라도 괜찮다
-        // }, 6000);
-        this.getMovies();
-        
-    }
-
-    render() {
-        //const {isLoad} = this.state;
-        //return <div>{isLoad ? "로딩중" : "로딩이 끝났습니다"}</div>;
-        
-        const {isLoad, movies } = this.state;
-        return  (<section className="container">
-                    {isLoad ? (
-                    <div className="loading">
-                        <span className="loading_text">로딩중입니다</span>
-                    </div>
-                    ) : (
-                    <div className="movies">
-                        {movies.map(result => { //movies배열의 키값들을 Movie Prop으로 전달한다. 
-                            console.log(result); //Movie에서는 타이틀을 리턴해주고 화면에 출력된다
-                            return <Movie key={result.id}
-                                id={result.id}
-                                year={result.year}
-                                title={result.title}
-                                summary={result.summary}
-                                medium_cover_image={result.medium_cover_image}
-                                genres={result.genres} //추가해준다
-                                >
-  
-                            </Movie>
-                        })}
-                    </div>
-                    )
-                    }
-                </section>
-                )
-    }
-
-
+//라우터사용
+function App3() {
+    return (
+        //about요청이라면 About컴포넌트를 보여주세요
+        //path의 /에 대한 component를실행 후 /about의 component를 실행하게 되는데
+        //정확하게 해당 패스에만 실행하는 속성이 exact={true}
+        //Navigation은 반드시 Router안에 있어야 합니다
+        <HashRouter>
+            <Navigation /> {/*모든페이지에서 공통으로 사용하는 Component */}
+            <Route path="/" exact={true} component={Home}></Route>
+            <Route path="/about" component={About}></Route>
+            <Route path="/movie_detail" component={Detail}></Route>
+        </HashRouter>
+        )
 }
 
 export default App3;
